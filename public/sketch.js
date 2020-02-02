@@ -117,26 +117,16 @@ var tones = {
                         window.alert("hmmm i didnt pick up any emotions. You need to get in touch with your feelings, come back when you have some... ");
                         location.reload();
                     }
-                    //currentRule = 13;
+
                 }
 
             let toneID = highestTone.tone_id;
 
             console.log(toneID);
-            // console.log(cCurrent/capturePix.pixels.length);
+
         },
 
 }
-
-// function getThreshold(){
-//     var threshold= 0;
-//     for ( let i = 0; i < capturePix.pixels.length; i++) {
-//         threshold += buffer2.pixels[i];
-//     }
-//
-//     return treshold;
-// }
-
 
 
 function draw() {
@@ -203,8 +193,8 @@ function draw() {
                 avgPixel += buffer2.pixels[i];
             }
 
-            console.log("average pixel", avgPixel / capturePix.pixels.length);
-            console.log("cCurrent", cCurrent / capturePix.pixels.length);
+            // console.log("average pixel", avgPixel / capturePix.pixels.length);
+            // console.log("cCurrent", cCurrent / capturePix.pixels.length);
 
             for ( let i = 0; i < capturePix.pixels.length; i++ ) {
 
@@ -297,11 +287,6 @@ function getCameraPixels() {
     buffer2 = capture.get(0, 0, capture.width, capture.height);
     capturePix.loadPixels();
     buffer2.loadPixels();
-
-    // console.log(`captutrePix length:: ${capturePix.pixels.length}`);
-    // console.log(`buffer2 length:: ${buffer2.pixels.length}`);
-    // console.log(`buffer width:: ${buffer2.width}`);
-    // console.log(`captutrePix width:: ${capturePix.width}`);
 
     for ( let i = 0; i < capturePix.pixels.length; i += 4 ) {
         for ( let channel = 0; channel < 3; channel++ ) {
