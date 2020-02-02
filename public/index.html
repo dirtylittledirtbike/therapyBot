@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tone2color</title>
+    <style> body {padding: 0; margin: 0;}
+        form input { border: 0; padding: 15px; width: 40%; margin-right: .5%; }
+        form button { width: 7%; background: rgb(229, 246, 255, 20); border: none; padding: 22px; }
+    </style>
+    <!-- <script src="../libraries/p5.min.js"></script>
+    <script src="../libraries/p5.dom.min.js"></script> -->
+    <script src="../libraries2/p5.js"></script>
+    <script src="../libraries2/p5.min.js"></script>
+    <!-- <script src="../libraries/p5.sound.min.js"></script> -->
+    <!-- <script src="sketch.js"></script> -->
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="sketch.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        $('form').submit(function(e){
+      //e.preventDefault(); // prevents page reloading
+          socket.emit('apiReq', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+    // socket.on('apiRes', function(msg){
+    //   $('#messages').append($('<li>').text(msg));
+    // });
+    });
+</script>
+
+    <!-- <input type="text" id="userText" onkeypress="myFunction(e)" placeholder="feelings" style="z-index:101; position:absolute; top:10px; left:10px;" /> -->
+
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" style="font-size: 12pt" placeholder="tell me how you've been feeling..."/><button>Send</button>
+    </form>
+  </body>
+</html>
