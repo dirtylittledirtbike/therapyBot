@@ -9,8 +9,8 @@ var io = socket(server);
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 var toneAnalyzer = new ToneAnalyzerV3({
   version: '2017-09-21',
-  iam_apikey: 'm0uudoJFeK8ozbtxPgvo7AY0N5udjnv4vwC-I7dJM-gm',
-  url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
+  iam_apikey: 'xxx',
+  url: 'xxx'
 });
 
 app.use(express.static('public'));
