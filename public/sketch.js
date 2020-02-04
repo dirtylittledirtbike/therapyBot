@@ -121,7 +121,12 @@ var tones = {
                 } else if (highestTone.tone_id == "sadness"){
 
                     window.alert("wow you're such a downer, sadness will get you nowhere... honestly it sucks to be around you when ur like this");
-                    currentRule = 7;
+
+                    if( Math.random() > 0.5 ) {
+                        currentRule = 7;
+                    } else {
+                        currentRule = 9;
+                    }
 
                 } else {
                     console.log('no tone');
