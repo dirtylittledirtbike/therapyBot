@@ -432,15 +432,15 @@ r11: function ( s, o ){
        }
    },
 
-   r110: function ( s, o ){
+   rMaze: function ( s, o ){
     if( cells[o].currentState === 1 ) {
-        if ( ( s > 2 ) && ( s < 9 ) && ( keyCode === BACKSPACE ) ){
+        if ( ( s > 0 ) && ( s < 6 ) ){
             cells[o].nextState = 1;
         } else {
             cells[ o ].nextState = 0;
         }
     } else {
-        if ( ( s > 0 ) && ( s < 8 )  ){
+        if ( s == 3 ){
             cells[ o ].nextState = 1;
         } else {
             cells[ o ].nextState = 0;
@@ -449,5 +449,5 @@ r11: function ( s, o ){
 
 },
 
-
+// 12345-3
 }

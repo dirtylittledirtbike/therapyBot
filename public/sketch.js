@@ -9,6 +9,7 @@ let currentRule = 12;
 let useCamera = false;
 let avgPixel = 0;
 let cCurrent = 0;
+let counter = 0;
 
 
 function preload() {
@@ -20,9 +21,11 @@ function preload() {
 
 function setup() {
 
+    let width = 480 * 1.3;
+    let height = 360 * 1.3;
     let socket = io.connect('http://206.189.165.184:3000');
     socket.on('apiRes', tones.toneGlitch);
-    createCanvas( 480 * 1.3, 360 * 1.3) ;
+    createCanvas( width, height) ;
 
     capture = createCapture( VIDEO );
     // capture.size( width*2, height*2 );
@@ -30,13 +33,13 @@ function setup() {
 
     img.resize( width, height );
     capturePix = createImage( width, height );
-    buffer = createImage( 480 * 1.3, 480 * 1.3 );
+    buffer = createImage( width, height );
     buffer2 = createImage( width, height );
     // button = createButton('pay me');
 
     setTimeout(function(){
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
-                    getCameraPixels();
+                    // getCameraPixels();
                 }, 3000);
 
 }
@@ -69,34 +72,43 @@ var tones = {
 
                 if (tones.length >= 3){
 
-                    window.alert("hmm interesting i picked up a few emotions, ur like deep... now lets make ur image reflect ur complexity")
+                    window.alert("hmm interesting i picked up a few emotions, ur like deep... now lets make ur image reflect ur complexity");
                     currentRule = 35;
                     console.log("rule 35")
 
                 } else if (highestTone.tone_id == "anger") {
 
-                    window.alert("anger does nothing for your appearance")
+                    window.alert("anger does nothing for your appearance");
                     currentRule = 0;
 
                 } else if (highestTone.tone_id == "fear"){
 
-                    window.alert("fear will cripple your personal growth 💅")
+                    window.alert("fear will cripple your personal growth 💅");
                     currentRule = 9;
 
                 } else if (highestTone.tone_id == "joy"){
 
-                    window.alert('happiness will do wonders for your self-image 💁‍')
-                    currentRule = 1;
+                    window.alert('happiness will do wonders for your self-image 💁‍');
+                    if( Math.random() > 0.5 ) {
+                        currentRule = 1;
+                    } else {
+                        currentRule = 12345;
+                    }
 
                 } else if (highestTone.tone_id == "analytical"){
 
                     window.alert("ur so analytical ur like a puzzle");
-                    currentRule = 110;
+                    if( Math.random() > 0.5 ) {
+                        currentRule = 12345;
+                    } else {
+                        currentRule = 11;
+                    }
+
 
                 } else if (highestTone.tone_id == "confident"){
 
-                    window.alert("omg you sound so confident, that will definitely improve your look!")
-                    currentRule = 11;
+                    window.alert("omg you sound so confident, that will definitely improve your look!");
+                    currentRule = 110;
 
                 } else if (highestTone.tone_id == "tentative"){
 
@@ -132,6 +144,15 @@ var tones = {
 
 
 function draw() {
+
+    if ( mouseIsPressed ) {
+        counter ++;
+
+        if (counter == 1){
+            getCameraPixels();
+        }
+
+    }
 
     // load pixels
     if ( useCamera ) {
@@ -364,7 +385,8 @@ function generate( o, tl, tc, tr, ml, mr, bl, bc, br  ) {
         rules.r110( score, o );
     } else if ( currentRule === 222 ) {
         rules.r222( score, o );
-
+    } else if ( currentRule === 12345 ){
+        rules.r12345( score, o );
     }
 }
 
@@ -576,9 +598,25 @@ let rules = {
                       cells[ o ].nextState = 0;
                   }
               }
-        }
+          }
 
-},
+      },
 
+    r12345: function ( s, o ){
 
+       if( cells[o].currentState === 1 ) {
+           if ( ( s > 0 ) && ( s < 6 ) ){
+               cells[o].nextState = 1;
+           } else {
+               cells[ o ].nextState = 0;
+           }
+       } else {
+           if ( s == 3 ){
+               cells[ o ].nextState = 1;
+           } else {
+               cells[ o ].nextState = 0;
+           }
+       }
+
+   },
 }
