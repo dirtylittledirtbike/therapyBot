@@ -71,8 +71,11 @@ var tones = {
                 if (tones.length >= 3){
 
                     window.alert("hmm interesting i picked up a few emotions, ur like deep... i dunno if i have a glitch to mirror your complexity, try again.");
-                    // currentRule = 35;
-                    console.log("rule 35")
+                    if( Math.random() > 0.5 ) {
+                        currentRule = 12345;
+                    } else {
+                        currentRule = 11;
+                    }
 
                 } else if (highestTone.tone_id == "anger") {
 
