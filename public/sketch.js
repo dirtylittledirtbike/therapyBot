@@ -26,7 +26,7 @@ function setup() {
     let height = 468;
     createCanvas( width, height) ;
 
-    let socket = io.connect('https://206.189.165.184:3000');
+    let socket = io.connect('http://206.189.165.184:3000');
     socket.on('apiRes', tones.toneGlitch);
 
     capture = createCapture( VIDEO );
