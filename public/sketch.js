@@ -140,9 +140,9 @@ var tones = {
 
             console.log(toneID);
 
-            if (cCurrent >= 255){
-                window.alert("Congrats!!!! your wide range of emotions managed to kill every live pixels, I recommend a mood stabilizer. Refresh your browser to start again.")
-            }
+            // if (cCurrent >= 255){
+            //     window.alert("Congrats!!!! your wide range of emotions managed to kill every live pixels, I recommend a mood stabilizer. Refresh your browser to start again.")
+            // }
         },
 
 }
