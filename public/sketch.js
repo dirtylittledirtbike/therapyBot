@@ -20,7 +20,7 @@ function preload() {
 
 function setup() {
 
-    let socket = io.connect('http://localhost:3000');
+    let socket = io.connect('http://206.189.165.184:3000');
     socket.on('apiRes', tones.toneGlitch);
     createCanvas( 480 * 1.3, 360 * 1.3) ;
 
