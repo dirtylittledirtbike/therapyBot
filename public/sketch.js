@@ -39,7 +39,6 @@ function setup() {
 
     setTimeout(function(){
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
-                    // getCameraPixels();
                 }, 3000);
 
 }
@@ -72,8 +71,8 @@ var tones = {
 
                 if (tones.length >= 3){
 
-                    window.alert("hmm interesting i picked up a few emotions, ur like deep... now lets make ur image reflect ur complexity");
-                    currentRule = 35;
+                    window.alert("hmm interesting i picked up a few emotions, ur like deep... i dunno if i have a glitch to mirror your complexity, try again.");
+                    // currentRule = 35;
                     console.log("rule 35")
 
                 } else if (highestTone.tone_id == "anger") {
@@ -113,10 +112,13 @@ var tones = {
                 } else if (highestTone.tone_id == "tentative"){
 
                     window.alert("wow you sound really unsure of yourself and kinda insecure, its kinda gross");
-                    currentRule = 35;
-                    // currentRule = 6;
-                    //if you set the rule to 222 without iterating it in draw it still enacts it
-                    // meaning it loads it or something from the original pic somewhere else
+
+                    if( Math.random() > 0.5 ) {
+                        currentRule = 9;
+                    } else {
+                        currentRule = 6;
+                    }
+
                 } else if (highestTone.tone_id == "sadness"){
 
                     window.alert("wow you're such a downer, sadness will get you nowhere... honestly it sucks to be around you when ur like this");
@@ -138,6 +140,9 @@ var tones = {
 
             console.log(toneID);
 
+            if (cCurrent > 254.9){
+                window.alert("Congrats!!!! your wide range of emotions managed to kill every live pixels, I recommend a mood stabilizer. Refresh your browser to start again.")
+            }
         },
 
 }
@@ -456,7 +461,7 @@ let rules = {
 
     r6: function ( s, o ){
         if( cells[o].currentState === 1 ) {
-            if ( ( keyCode === BACKSPACE ) ){
+            if ( s < 2 ){
                 cells[o].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
@@ -523,17 +528,20 @@ let rules = {
   },
 
    r35: function ( s, o ) {
-     if( cells[ o ].currentState === 1 ) {
-         if( ( s > 1 ) && ( s < 6 ) && keyCode === BACKSPACE) {
-            cells[ o ].nextState = 1;
+
+     if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 80)){
+         if( cells[ o ].currentState === 1 ) {
+             if( ( s > 1 ) && ( s < 6 ) && keyCode === BACKSPACE) {
+                cells[ o ].nextState = 1;
+             } else {
+                cells[ o ].nextState = 0;
+               }
          } else {
-            cells[ o ].nextState = 0;
-           }
-     } else {
-         if ( (s >= 1) && ( s < 8 ) ) {
-             cells[ o ].nextState = 1;
-         } else {
-             cells[ o ].nextState = 0;
+             if ( (s >= 1) && ( s < 8 ) ) {
+                 cells[ o ].nextState = 1;
+             } else {
+                 cells[ o ].nextState = 0;
+               }
            }
        }
    },
