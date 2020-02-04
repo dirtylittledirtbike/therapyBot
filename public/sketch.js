@@ -70,7 +70,7 @@ var tones = {
 
                 if (tones.length >= 3){
 
-                    window.alert("hmm interesting i picked up a few emotions, ur like deep... i dunno if i have a glitch to mirror your complexity, try again.");
+                    window.alert("hmm interesting i picked up a few emotions, ur like deep... i dunno if i have a glitch to mirror your complexity.");
                     if( Math.random() > 0.5 ) {
                         currentRule = 12345;
                     } else {
