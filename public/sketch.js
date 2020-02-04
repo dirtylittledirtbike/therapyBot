@@ -102,6 +102,7 @@ var tones = {
 
                     window.alert("wow you sound really unsure of yourself and kinda insecure, its kinda gross");
                     currentRule = 35;
+                    // currentRule = 6;
                     //if you set the rule to 222 without iterating it in draw it still enacts it
                     // meaning it loads it or something from the original pic somewhere else
                 } else if (highestTone.tone_id == "sadness"){
@@ -111,8 +112,9 @@ var tones = {
 
                 } else {
                     console.log('no tone');
-                    if( Math.random() > 0.3 ) {
+                    if( Math.random() > 0.2 ) {
                         window.alert("i didnt pick up any emotions. you must be emotionally stunted... ");
+                        currentRule = 12
                     } else {
                         window.alert("hmmm i didnt pick up any emotions. You need to get in touch with your feelings, come back when you have some... ");
                         location.reload();
@@ -395,7 +397,7 @@ let rules = {
 
     r1: function( s, o ) {
 
-        if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 30)){
+        if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
             if ( cells[ o ].currentState === 1 ) {
                 if ( s === 2 || s === 3 || ((s >= 4) && (s < 9 ))) {
                     cells[ o ].nextState = 1;

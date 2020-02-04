@@ -1,16 +1,17 @@
 
 
+const port = process.env.PORT || 5000
 var express = require('express');
 var app = express();
-var server = app.listen(3000);
+var server = app.listen(port);
 var socket = require('socket.io');
 var io = socket(server);
 
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 var toneAnalyzer = new ToneAnalyzerV3({
   version: '2017-09-21',
-  iam_apikey: 'xxx',
-  url: 'xxx'
+  iam_apikey: 'm0uudoJFeK8ozbtxPgvo7AY0N5udjnv4vwC-I7dJM-gm',
+  url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
 });
 
 app.use(express.static('public'));

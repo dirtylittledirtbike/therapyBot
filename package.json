@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "lodash.update": "^4.10.2",
     "socket.io": "^2.2.0",
     "watson-developer-cloud": "^3.18.1"
   }
