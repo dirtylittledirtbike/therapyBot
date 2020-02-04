@@ -39,7 +39,7 @@ function setup() {
 
     setTimeout(function(){
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
-                }, 3000);
+                }, 2000);
 
 }
 
@@ -140,7 +140,7 @@ var tones = {
 
             console.log(toneID);
 
-            if (cCurrent > 254.9){
+            if (cCurrent >= 255){
                 window.alert("Congrats!!!! your wide range of emotions managed to kill every live pixels, I recommend a mood stabilizer. Refresh your browser to start again.")
             }
         },
