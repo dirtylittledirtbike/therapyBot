@@ -10,6 +10,7 @@ let useCamera = false;
 let avgPixel = 0;
 let cCurrent = 0;
 let counter = 0;
+let counter2 = 0;
 
 
 function preload() {
@@ -38,7 +39,7 @@ function setup() {
 
     setTimeout(function(){
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
-                }, 2000);
+                }, 1000);
 
 }
 
@@ -157,12 +158,24 @@ var tones = {
 
 function draw() {
 
-    if ( mouseIsPressed ) {
+    // if ( mouseIsPressed ) {
+    //     counter ++;
+    //
+    //     if (counter == 1){
+    //         getCameraPixels();
+    //     }
+    //
+    // }
+    // or cant decide which is better
+    if ( keyIsPressed === true && counter < 1 ) {
+
         counter ++;
 
         if (counter == 1){
             getCameraPixels();
+            console.log(counter);
         }
+
 
     }
 
@@ -344,7 +357,8 @@ function getCameraPixels() {
       alphaCell.value = 255;
       cells.push( alphaCell );
     }
-    //console.log(Cell)
+
+    console.log("took capture")
     capturePix.updatePixels();
     buffer2.updatePixels();
     useCamera = true;
