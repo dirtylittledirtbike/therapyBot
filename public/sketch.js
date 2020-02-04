@@ -21,17 +21,16 @@ function preload() {
 
 function setup() {
 
-    let width = 480 * 1.3;
-    let height = 360 * 1.3;
-    let socket = io.connect('http://206.189.165.184:3000');
-    socket.on('apiRes', tones.toneGlitch);
+    let width = 624;
+    let height = 468;
     createCanvas( width, height) ;
 
+    let socket = io.connect('http://206.189.165.184:3000');
+    socket.on('apiRes', tones.toneGlitch);
+
     capture = createCapture( VIDEO );
-    // capture.size( width*2, height*2 );
     capture.hide();
 
-    img.resize( width, height );
     capturePix = createImage( width, height );
     buffer = createImage( width, height );
     buffer2 = createImage( width, height );
@@ -461,13 +460,14 @@ let rules = {
 
     r6: function ( s, o ){
         if( cells[o].currentState === 1 ) {
+            // was s < 2
             if ( s < 2 ){
                 cells[o].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
             }
         } else {
-            if ( ( s > 0 ) && ( s < 8 )  ){
+            if ( ( s > 0 ) && ( s < 7 )  ){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
