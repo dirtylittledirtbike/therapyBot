@@ -15,18 +15,18 @@ let counter2 = 0;
 
 function preload() {
 
-    img = loadImage( 'therapist.jpg' );
+    img = loadImage( 'therapist3.jpg' );
 
 }
 
 
 function setup() {
 
-    let width = 624;
-    let height = 468;
+    let width = 640;
+    let height = 480;
     createCanvas( width, height) ;
 
-    let socket = io.connect('http://206.189.165.184:3000');
+    let socket = io.connect('https://friedchickendogs.com');
     socket.on('apiRes', tones.toneGlitch);
 
     capture = createCapture( VIDEO );
@@ -332,7 +332,10 @@ function draw() {
 function getCameraPixels() {
 
     capturePix = capture.get( 0, 0, capture.width, capture.height );
+    capturePix.resize(capture.width/1.2,capture.height/1.2);
     buffer2 = capture.get(0, 0, capture.width, capture.height);
+    buffer2.resize(capture.width/1.2,capture.height/1.2);
+    console.log(buffer.height/1.2, buffer.width/1.2);
     capturePix.loadPixels();
     buffer2.loadPixels();
 
