@@ -15,7 +15,7 @@ let counter2 = 0;
 
 function preload() {
 
-    img = loadImage( 'therapist3.jpg' );
+    img = loadImage( 'media/therapist3.jpg' );
 
 }
 
@@ -26,7 +26,7 @@ function setup() {
     let height = 480;
     createCanvas( width, height) ;
 
-    let socket = io.connect('https://friedchickendogs.com');
+    let socket = io.connect('http://localhost:5000');
     socket.on('apiRes', tones.toneGlitch);
 
     capture = createCapture( VIDEO );
