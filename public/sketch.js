@@ -110,7 +110,11 @@ var tones = {
                 } else if (highestTone.tone_id == "confident"){
 
                     window.alert("omg you sound so confident, that will definitely improve your look!");
-                    currentRule = 110;
+                    if( Math.random() > 0.5 ) {
+                        currentRule = 110;
+                    } else {
+                        currentRule = 1;
+                    }
 
                 } else if (highestTone.tone_id == "tentative"){
 
