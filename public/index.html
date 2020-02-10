@@ -12,18 +12,22 @@
     <script src="../libraries/p5.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="sketch.js"></script>
+    <!-- <script src="sketch.js"></script> -->
     <script>
       $(function () {
-        var socket = io();
-        $('form').submit(function(e){
-      //e.preventDefault(); // prevents page reloading
-          socket.emit('apiReq', $('#m').val());
-          $('#m').val('');
-          return false;
-        });
-    });
-</script>
+          let socket = io.connect('https://friedchickendogs.com');
+
+          $('form').submit(function(e){
+            e.preventDefault();
+            let id = socket.id;// prevents page reloading
+            socket.emit('apiReq', $('#m').val(), id);
+            // socket.emit('clientId', id);
+            $('#m').val('');
+            return false;
+          });
+      });
+    </script>
+    <script src="sketch.js"></script>
   </head>
   <body>
     <ul id="messages"></ul>

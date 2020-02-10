@@ -11,6 +11,7 @@ let avgPixel = 0;
 let cCurrent = 0;
 let counter = 0;
 let counter2 = 0;
+var socket;
 
 
 function preload() {
@@ -26,8 +27,11 @@ function setup() {
     let height = 480;
     createCanvas( width, height) ;
 
-    let socket = io.connect('http://localhost:5000');
-    socket.on('apiRes', tones.toneGlitch);
+    socket = io.connect('https://friedchickendogs.com');
+
+    socket.on('apiRes', function(json){
+        toneGlitch(json);
+    });
 
     capture = createCapture( VIDEO );
     capture.hide();
@@ -41,12 +45,22 @@ function setup() {
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
                 }, 1000);
 
+    var arr = ['a', 'b', 'c', 'd', 'e', 'f'];
+    for (var i = 0; i < arr.length; i+=2){
+
+      if ( arr[i] == 'a' ){
+          console.log(arr[i + 1]);
+      }
+      // if ( i%2 ){}
+      //console.log(arr[i]);
+    }
+
 }
 
 
-var tones = {
+// var tones = {
 
-    toneGlitch: function(json) {
+    function toneGlitch(json){
 
               // avgPixelValue = getPixelAvg();
               // console.log(avgPixelValue)
@@ -155,9 +169,9 @@ var tones = {
             // if (cCurrent >= 255){
             //     window.alert("Congrats!!!! your wide range of emotions managed to kill every live pixels, I recommend a mood stabilizer. Refresh your browser to start again.")
             // }
-        },
+        }
 
-}
+// }
 
 
 function draw() {
