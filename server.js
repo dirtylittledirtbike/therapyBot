@@ -10,8 +10,8 @@ var clients = [];
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 var toneAnalyzer = new ToneAnalyzerV3({
     version: '2017-09-21',
-    iam_apikey: 'm0uudoJFeK8ozbtxPgvo7AY0N5udjnv4vwC-I7dJM-gm',
-    url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
+    iam_apikey: 'xxxxx',
+    url: 'xxxxx'
 });
 
 app.use(express.static('public'));
@@ -73,8 +73,7 @@ function getWatsonData(text, callback) {
             console.log('Error:', error);
         } else {
                   // tone of the text, according to watson. converts a JavaScript object or value to a JSON string
-            var tone = JSON.stringify(response, null, 2)
-
+            var tone = JSON.stringify(response, null, 2);
                   // Output Watson's tone analysis to the console.
             console.log("In \'" + text + "\' I sense feelings of:\n");
             console.log(tone);
