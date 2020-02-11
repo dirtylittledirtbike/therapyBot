@@ -35,22 +35,22 @@ io.sockets.on('connection', function (socket){
           });
       });
 
-    socket.on('disconnect', function(){
+      socket.on('disconnect', function(){
 
-        console.log('user disconnected');
+          console.log('user disconnected');
 
-        for (var i = 0; i < clients.length; i++){
-            if (clients[i] == socket.id){
-                clients.splice(i, 2);
-            }
-         }
-         if (clients.length >= 20){
-             clients = [];
-         }
+          for (var i = 0; i < clients.length; i++){
+              if (clients[i] == socket.id){
+                  clients.splice(i, 2);
+              }
+           }
+           if (clients.length >= 20){
+               clients = [];
+           }
 
-         console.log("clients after disconnect", clients, clients.length);
+           console.log("clients after disconnect", clients, clients.length);
 
-    });
+      });
 
 });
 
@@ -62,29 +62,24 @@ function getWatsonData(text, callback) {
     var input = { "text": text };
 
   // The format that the tone analyzer needs.
-    var params =
-          {
-          'tone_input': input,
-          'content_type': 'application/json'
-          };
+    var params = {
+        'tone_input': input,
+        'content_type': 'application/json'
+    };
 
     toneAnalyzer.tone(params, function(error, response){
           // checking 4 error.
-          if (error)
-                  {
-                  console.log('Error:', error);
-                  }
-          // No error, we get tone/result.
-          else
-                  {
+        if (error){
+            console.log('Error:', error);
+        } else {
                   // tone of the text, according to watson. converts a JavaScript object or value to a JSON string
-                  var tone = JSON.stringify(response, null, 2)
+            var tone = JSON.stringify(response, null, 2)
 
                   // Output Watson's tone analysis to the console.
-                  console.log("In \'" + text + "\' I sense feelings of:\n");
-                  console.log(tone);
-                  callback(tone)
-                  }
-          });
+            console.log("In \'" + text + "\' I sense feelings of:\n");
+            console.log(tone);
+            callback(tone)
+        }
+    });
 
 }
