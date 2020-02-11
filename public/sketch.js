@@ -45,146 +45,123 @@ function setup() {
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
                 }, 1000);
 
-    var arr = ['a', 'b', 'c', 'd', 'e', 'f'];
-    for (var i = 0; i < arr.length; i+=2){
-
-      if ( arr[i] == 'a' ){
-          console.log(arr[i + 1]);
-      }
-      // if ( i%2 ){}
-      //console.log(arr[i]);
-    }
 
 }
 
 
 // var tones = {
 
-    function toneGlitch(json){
+function toneGlitch(json){
 
-              // avgPixelValue = getPixelAvg();
-              // console.log(avgPixelValue)
-              console.log(json)
-              json = JSON.parse(json);
-              let tones = json.document_tone.tones;
+      console.log(json)
+      json = JSON.parse(json);
+      let tones = json.document_tone.tones;
 
-              console.log(tones)
+      console.log(tones)
 
-               let highestTone= {
-                  toneId:'empty',
-                  tone_name:'empty',
-                  score:0
-               }
+      let highestTone= {
+          toneId:'empty',
+          tone_name:'empty',
+          score:0
+      }
 
-               for (var i = 0; i < tones.length; i++){
-                   if( tones[i].score > highestTone.score){
-                       highestTone = tones[i]
+      for (var i = 0; i < tones.length; i++){
+          if( tones[i].score > highestTone.score){
+              highestTone = tones[i]
                       // console.log(tones.length)
-                   }
-               }
+          }
+      }
 
-                if (tones.length >= 3){
+      if (tones.length >= 3){
 
-                    window.alert("hmm interesting i picked up a few emotions, ur like deep... i dunno if i have a glitch to mirror your complexity.");
-                    if( Math.random() > 0.5 ) {
-                        currentRule = 12345;
-                    } else {
-                        currentRule = 11;
-                    }
+          window.alert("hmm interesting i picked up a few emotions, ur like deep... i dunno if i have a glitch to mirror your complexity.");
+          if( Math.random() > 0.5 ) {
+              currentRule = 12345;
+          } else {
+              currentRule = 11;
+          }
 
-                } else if (highestTone.tone_id == "anger") {
+      } else if (highestTone.tone_id == "anger") {
 
-                    window.alert("anger does nothing for your appearance");
-                    currentRule = 0;
+          window.alert("anger does nothing for your appearance");
+          currentRule = 0;
 
-                } else if (highestTone.tone_id == "fear"){
+      } else if (highestTone.tone_id == "fear"){
 
-                    window.alert("fear will cripple your personal growth 💅");
-                    currentRule = 9;
+          window.alert("fear will cripple your personal growth 💅");
+          currentRule = 9;
 
-                } else if (highestTone.tone_id == "joy"){
+      } else if (highestTone.tone_id == "joy"){
 
-                    window.alert('happiness will do wonders for your self-image 💁‍');
-                    if( Math.random() > 0.5 ) {
-                        currentRule = 1;
-                    } else {
-                        currentRule = 12345;
-                    }
+          window.alert('happiness will do wonders for your self-image 💁‍');
+          if( Math.random() > 0.5 ) {
+              currentRule = 1;
+          } else {
+              currentRule = 12345;
+          }
 
-                } else if (highestTone.tone_id == "analytical"){
+      } else if (highestTone.tone_id == "analytical"){
 
-                    window.alert("ur so analytical ur like a puzzle");
-                    if( Math.random() > 0.5 ) {
-                        currentRule = 12345;
-                    } else {
-                        currentRule = 11;
-                    }
+          window.alert("ur so analytical ur like a puzzle");
+          if( Math.random() > 0.5 ) {
+              currentRule = 12345;
+          } else {
+              currentRule = 11;
+          }
 
 
-                } else if (highestTone.tone_id == "confident"){
+      } else if (highestTone.tone_id == "confident"){
 
-                    window.alert("omg you sound so confident, that will definitely improve your look!");
-                    if( Math.random() > 0.5 ) {
-                        currentRule = 110;
-                    } else {
-                        currentRule = 1;
-                    }
+          window.alert("omg you sound so confident, that will definitely improve your look!");
+          if( Math.random() > 0.5 ) {
+              currentRule = 110;
+          } else {
+              currentRule = 1;
+          }
 
-                } else if (highestTone.tone_id == "tentative"){
+      } else if (highestTone.tone_id == "tentative"){
 
-                    window.alert("wow you sound really unsure of yourself and kinda insecure, its kinda gross");
+          window.alert("wow you sound really unsure of yourself and kinda insecure, its kinda gross");
 
-                    if( Math.random() > 0.5 ) {
-                        currentRule = 9;
-                    } else {
-                        currentRule = 6;
-                    }
+          if( Math.random() > 0.5 ) {
+              currentRule = 9;
+          } else {
+              currentRule = 6;
+          }
 
-                } else if (highestTone.tone_id == "sadness"){
+      } else if (highestTone.tone_id == "sadness"){
 
-                    window.alert("wow you're such a downer, sadness will get you nowhere... honestly it sucks to be around you when ur like this");
+          window.alert("wow you're such a downer, sadness will get you nowhere... honestly it sucks to be around you when ur like this");
 
-                    if( Math.random() > 0.5 ) {
-                        currentRule = 7;
-                    } else {
-                        currentRule = 9;
-                    }
+          if( Math.random() > 0.5 ) {
+              currentRule = 7;
+          } else {
+              currentRule = 9;
+          }
 
-                } else {
-                    console.log('no tone');
-                    if( Math.random() > 0.2 ) {
-                        window.alert("i didnt pick up any emotions. you must be emotionally stunted... ");
-                        currentRule = 12
-                    } else {
-                        window.alert("hmmm i didnt pick up any emotions. You need to get in touch with your feelings, come back when you have some... ");
-                        location.reload();
-                    }
+      } else {
+          console.log('no tone');
+          if( Math.random() > 0.2 ) {
+              window.alert("i didnt pick up any emotions. you must be emotionally stunted... ");
+              currentRule = 12
+          } else {
+              window.alert("hmmm i didnt pick up any emotions. You need to get in touch with your feelings, come back when you have some... ");
+              location.reload();
+          }
 
-                }
+      }
 
-            let toneID = highestTone.tone_id;
+      let toneID = highestTone.tone_id;
 
-            console.log(toneID);
+      console.log(toneID);
 
-            // if (cCurrent >= 255){
-            //     window.alert("Congrats!!!! your wide range of emotions managed to kill every live pixels, I recommend a mood stabilizer. Refresh your browser to start again.")
-            // }
-        }
+}
 
 // }
 
 
 function draw() {
 
-    // if ( mouseIsPressed ) {
-    //     counter ++;
-    //
-    //     if (counter == 1){
-    //         getCameraPixels();
-    //     }
-    //
-    // }
-    // or cant decide which is better
     if ( keyIsPressed === true && counter < 1 ) {
 
         counter ++;
@@ -330,19 +307,18 @@ function draw() {
               }
         }
 
-// now iterate through the buffer and set the images pixels from the buffer
+        // now iterate through the buffer and set the images pixels from the buffer
         for ( let i = 0; i < img.pixels.length; i++ ) {
 
             img.pixels[i] = buffer.pixels[i];
 
         }
 
-// update the pixels
+        // update the pixels
         buffer.updatePixels();
         img.updatePixels();
         image(img, 0, 0);
     }
-
 
 }
 
@@ -392,7 +368,6 @@ function generate( o, tl, tc, tr, ml, mr, bl, bc, br  ) {
 
     // add up the states of the neighboring cells
     // console.log( "cells " + c.index + " neighbors: " + c.neighbors );
-
     var score = 0;
 
     score += cells[ tl ].currentState;
@@ -435,6 +410,8 @@ function generate( o, tl, tc, tr, ml, mr, bl, bc, br  ) {
     } else if ( currentRule === 12345 ){
         rules.r12345( score, o );
     }
+
+
 }
 
 
@@ -635,7 +612,7 @@ let rules = {
 
    r110: function ( s, o ){
 
-          if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 20)){
+          if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 25)){
               if( cells[o].currentState === 1 ) {
                   if ( ( s > 2 ) && ( s < 9 ) && ( keyCode === BACKSPACE ) ){
                       cells[o].nextState = 1;
