@@ -103,17 +103,12 @@ function toneGlitch(json){
       } else if (highestTone.tone_id == "confident"){
 
           window.alert("omg you sound so confident, that will definitely improve your look!");
-          currentRule = 110;
+          currentRule = 6;
 
       } else if (highestTone.tone_id == "tentative"){
 
           window.alert("wow you sound really unsure of yourself and kinda insecure, its kinda gross");
-
-          if( Math.random() > 0.5 ) {
-              currentRule = 9;
-          } else {
-              currentRule = 6;
-          }
+          currentRule = 46;
 
       } else if (highestTone.tone_id == "sadness"){
 
@@ -137,6 +132,12 @@ function toneGlitch(json){
               location.reload();
           }
 
+      }
+
+      if ((cCurrent / capturePix.pixels.length) >= 254.98){
+          window.alert("Congrats, your extreme mood swings have killed every pixel! I'm prescribing a mood stabilizer, see you next week!");
+          // location.reload();
+          console.log(cCurrent);
       }
 
       let toneID = highestTone.tone_id;
@@ -400,7 +401,9 @@ function generate( o, tl, tc, tr, ml, mr, bl, bc, br  ) {
     } else if ( currentRule === 12345 ){
         rules.r12345( score, o );
     } else if ( currentRule === 45 ){
-        rules.r45( score, o )
+        rules.r45( score, o );
+    } else if ( currentRule === 46 ){
+        rules.r46( score, o )
     }
 
 
@@ -654,20 +657,20 @@ let rules = {
        }
    },
 
-   // r45: function ( s, o ) {
-   //   if( cells[ o ].currentState === 1 ) {
-   //       if( ( s == 3) || ( s == 4 ) )  {
-   //          cells[ o ].nextState = 1;
-   //       } else {
-   //          cells[ o ].nextState = 0;
-   //         }
-   //   } else {
-   //       if ( ( s == 4 ) || ( s == 5) || ( s == 6 ) ) {
-   //           cells[ o ].nextState = 1;
-   //       } else {
-   //           cells[ o ].nextState = 0;
-   //         }
-   //     }
-   // },
+   r46: function ( s, o ) {
+     if( cells[ o ].currentState === 1 ) {
+         if( ( s == 4) || ( s == 5 ) || ( s == 6 ) || ( s == 7 ) || ( s == 8 ))  {
+            cells[ o ].nextState = 1;
+         } else {
+            cells[ o ].nextState = 0;
+           }
+     } else {
+         if ( ( s == 3 ) ) {
+             cells[ o ].nextState = 1;
+         } else {
+             cells[ o ].nextState = 0;
+           }
+       }
+   },
 
 }
