@@ -73,51 +73,86 @@ function toneGlitch(json){
 
       if (tones.length >= 3){
 
-          window.alert("hmm interesting i picked up a few emotions, ur like deep... i dunno if i have a glitch to mirror your complexity.");
+        // if( Math.random() > 0.5 ) {
+        //
+        // } else {
+        //
+        // }
+          window.alert("hmm interesting I picked up a few emotions, you seem to have a lot going on... i dunno if i have a glitch to mirror your emotional depth.");
           currentRule = 45;
 
       } else if (highestTone.tone_id == "anger") {
 
-          window.alert("anger does nothing for your appearance");
+          if( Math.random() > 0.5 ) {
+              window.alert("you need to check your temper at the door, I don't treat infants...");
+          } else {
+              window.alert("anger does nothing for your appearance");
+          }
+
           currentRule = 0;
 
       } else if (highestTone.tone_id == "fear"){
 
-          window.alert("fear will cripple your personal growth 💅");
+          if( Math.random() > 0.5 ) {
+              window.alert("excessive worry WILL cause wrinkles. Im worried about the impact that may have on your love life.");
+          } else {
+              window.alert("fear will cripple your personal growth 💅");
+          }
+
           currentRule = 9;
 
       } else if (highestTone.tone_id == "joy"){
 
-          window.alert('happiness will do wonders for your self-image 💁‍');
+          if( Math.random() > 0.5 ) {
+              window.alert('you seem to be feeling good, I hate to burst your bubble, but insurance will not be covering our session today.');
+          } else {
+              window.alert('happiness will do wonders for your self-image 💁‍');
+          }
+
           currentRule = 1;
 
       } else if (highestTone.tone_id == "analytical"){
 
-          window.alert("ur so analytical ur like a puzzle");
           if( Math.random() > 0.5 ) {
+              window.alert("ur so analytical ur like a puzzle");
               currentRule = 12345;
           } else {
+              window.alert("Your word choice seems to suggest that others perceiving you as intelligent is important to you");
               currentRule = 11;
           }
 
       } else if (highestTone.tone_id == "confident"){
 
-          window.alert("omg you sound so confident, that will definitely improve your look!");
+          if( Math.random() > 0.5 ) {
+              window.alert("omg you sound so confident, that will definitely improve your look!");
+          } else {
+              window.alert("wow you seem so sure of yourself. Must be nice to always feel right.");
+          }
+
           currentRule = 6;
 
       } else if (highestTone.tone_id == "tentative"){
 
-          window.alert("wow you sound really unsure of yourself and kinda insecure, its kinda gross");
+          if( Math.random() > 0.5 ) {
+              window.alert("I sense some hesitation in your tone, does this affect your relationship with others?");
+          } else {
+              window.alert("wow you sound really unsure of yourself and kinda insecure :/");
+          }
+
           currentRule = 46;
 
       } else if (highestTone.tone_id == "sadness"){
 
-          window.alert("wow you're such a downer, sadness will get you nowhere... honestly it sucks to be around you when ur like this");
 
           if( Math.random() > 0.5 ) {
+
+              window.alert("oof you're such a downer, sadness will get you nowhere... honestly, it sucks to be around you when ur like this");
               currentRule = 7;
+
           } else {
+              window.alert("you really need to be more positive, others have it much worse than you.");
               currentRule = 9;
+
           }
 
       } else {
@@ -134,9 +169,9 @@ function toneGlitch(json){
 
       }
 
-      if ((cCurrent / capturePix.pixels.length) >= 254.98){
+      if ((cCurrent / capturePix.pixels.length) > 254.98){
           window.alert("Congrats, your extreme mood swings have killed every pixel! I'm prescribing a mood stabilizer, see you next week!");
-          // location.reload();
+          location.reload();
           console.log(cCurrent);
       }
 
@@ -144,8 +179,6 @@ function toneGlitch(json){
       console.log(toneID);
 
 }
-
-// }
 
 
 function draw() {
