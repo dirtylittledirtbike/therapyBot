@@ -45,7 +45,6 @@ function setup() {
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
                 }, 1000);
 
-
 }
 
 
@@ -75,11 +74,7 @@ function toneGlitch(json){
       if (tones.length >= 3){
 
           window.alert("hmm interesting i picked up a few emotions, ur like deep... i dunno if i have a glitch to mirror your complexity.");
-          if( Math.random() > 0.5 ) {
-              currentRule = 12345;
-          } else {
-              currentRule = 11;
-          }
+          currentRule = 45;
 
       } else if (highestTone.tone_id == "anger") {
 
@@ -94,11 +89,7 @@ function toneGlitch(json){
       } else if (highestTone.tone_id == "joy"){
 
           window.alert('happiness will do wonders for your self-image 💁‍');
-          if( Math.random() > 0.5 ) {
-              currentRule = 1;
-          } else {
-              currentRule = 12345;
-          }
+          currentRule = 1;
 
       } else if (highestTone.tone_id == "analytical"){
 
@@ -109,15 +100,10 @@ function toneGlitch(json){
               currentRule = 11;
           }
 
-
       } else if (highestTone.tone_id == "confident"){
 
           window.alert("omg you sound so confident, that will definitely improve your look!");
-          if( Math.random() > 0.5 ) {
-              currentRule = 110;
-          } else {
-              currentRule = 1;
-          }
+          currentRule = 110;
 
       } else if (highestTone.tone_id == "tentative"){
 
@@ -140,7 +126,9 @@ function toneGlitch(json){
           }
 
       } else {
+
           console.log('no tone');
+
           if( Math.random() > 0.2 ) {
               window.alert("i didnt pick up any emotions. you must be emotionally stunted... ");
               currentRule = 12
@@ -152,7 +140,6 @@ function toneGlitch(json){
       }
 
       let toneID = highestTone.tone_id;
-
       console.log(toneID);
 
 }
@@ -162,15 +149,18 @@ function toneGlitch(json){
 
 function draw() {
 
-    if ( keyIsPressed === true && counter < 1 ) {
+    if ( (keyIsPressed === true && keyCode !== ENTER)&& counter < 1  ) {
 
         counter ++;
 
         if (counter == 1){
-            getCameraPixels();
+
+            setTimeout(function(){
+                          getCameraPixels();
+                       }, 150);
+
             console.log(counter);
         }
-
 
     }
 
@@ -409,6 +399,8 @@ function generate( o, tl, tc, tr, ml, mr, bl, bc, br  ) {
         rules.r222( score, o );
     } else if ( currentRule === 12345 ){
         rules.r12345( score, o );
+    } else if ( currentRule === 45 ){
+        rules.r45( score, o )
     }
 
 
@@ -460,7 +452,6 @@ let rules = {
         }
 
     },
-
 
     r4: function ( s, o ) {
         if ( cells[ o ].currentState === 1 ) {
@@ -528,7 +519,7 @@ let rules = {
        }
    },
 
-  r11: function ( s, o ){
+   r11: function ( s, o ){
 
       if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
           if( cells[o].currentState === 1 ) {
@@ -584,7 +575,6 @@ let rules = {
    },
 
    //old rule for fear was r9
-
    r13: function ( s, o ) {
      if( cells[ o ].currentState === 1 ) {
          if( ( s > 4 ) && ( s < 9 ) )  {
@@ -612,9 +602,9 @@ let rules = {
 
    r110: function ( s, o ){
 
-          if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 25)){
+          // if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
               if( cells[o].currentState === 1 ) {
-                  if ( ( s > 2 ) && ( s < 9 ) && ( keyCode === BACKSPACE ) ){
+                  if ( ( s > 2 ) && ( s < 4 ) && ( keyCode === BACKSPACE ) ){
                       cells[o].nextState = 1;
                   } else {
                       cells[ o ].nextState = 0;
@@ -626,9 +616,9 @@ let rules = {
                       cells[ o ].nextState = 0;
                   }
               }
-          }
+          // }
 
-      },
+    },
 
     r12345: function ( s, o ){
 
@@ -647,4 +637,37 @@ let rules = {
        }
 
    },
+
+   r45: function ( s, o ) {
+     if( cells[ o ].currentState === 1 ) {
+         if( ( s == 4 ) || ( s == 5 ) || ( s == 6 ) || ( s == 7 ) )  {
+            cells[ o ].nextState = 1;
+         } else {
+            cells[ o ].nextState = 0;
+           }
+     } else {
+         if ( ( s == 3 ) || ( s == 4) || ( s == 5 ) ) {
+             cells[ o ].nextState = 1;
+         } else {
+             cells[ o ].nextState = 0;
+           }
+       }
+   },
+
+   // r45: function ( s, o ) {
+   //   if( cells[ o ].currentState === 1 ) {
+   //       if( ( s == 3) || ( s == 4 ) )  {
+   //          cells[ o ].nextState = 1;
+   //       } else {
+   //          cells[ o ].nextState = 0;
+   //         }
+   //   } else {
+   //       if ( ( s == 4 ) || ( s == 5) || ( s == 6 ) ) {
+   //           cells[ o ].nextState = 1;
+   //       } else {
+   //           cells[ o ].nextState = 0;
+   //         }
+   //     }
+   // },
+
 }

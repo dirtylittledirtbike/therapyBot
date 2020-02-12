@@ -10,8 +10,8 @@ var clients = [];
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 var toneAnalyzer = new ToneAnalyzerV3({
     version: '2017-09-21',
-    iam_apikey: 'xxxxx',
-    url: 'xxxxx'
+    iam_apikey: 'xxxx',
+    url: 'xxxx'
 });
 
 app.use(express.static('public'));
