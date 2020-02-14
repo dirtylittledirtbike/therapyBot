@@ -483,17 +483,17 @@ let rules = {
         }
     },
 
-    r1: function( s, o ) {
+    r1: function( s, o ){
 
         if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
             if ( cells[ o ].currentState === 1 ) {
-                if ( s === 2 || s === 3 || ((s >= 4) && (s < 9 ))) {
+                if ( s === 2 || s === 3 || ((s >= 4) && (s < 9 )) ){
                     cells[ o ].nextState = 1;
                 } else {
                     cells[ o ].nextState = 0;
                 }
             } else {
-                if ( (s === 3 || s >= 6 ) ) {
+                if ( (s === 3 || s >= 6 ) ){
                     cells[ o ].nextState = 1;
                 } else {
                     cells[ o ].nextState = 0;
@@ -504,14 +504,14 @@ let rules = {
     },
 
     r4: function ( s, o ) {
-        if ( cells[ o ].currentState === 1 ) {
+        if ( cells[ o ].currentState === 1 ){
             if ( ( s === 1 ) ) {
                 cells[o].nextState = 1;
             } else {
                 cells[ o ].nextState = 0
               }
         } else {
-            if ( s === 1 ) {
+            if ( s === 1 ){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
@@ -537,15 +537,15 @@ let rules = {
 
     },
 
-    r7: function ( s, o ) {
-        if ( cells[ o ].currentState === 1 ) {
+    r7: function ( s, o ){
+        if ( cells[ o ].currentState === 1 ){
             if ( ( s >= 2 ) && ( s <= 5 ) ){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
             }
         } else {
-            if ( ( s >= 4 ) && ( s <= 7 ) ) {
+            if ( ( s >= 4 ) && ( s <= 7 ) ){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
@@ -553,15 +553,15 @@ let rules = {
         }
     },
 
-    r9: function( s, o ) {
-       if ( cells[ o ].currentState === 1 ) {
-           if( s === 5 ) {
+    r9: function( s, o ){
+       if ( cells[ o ].currentState === 1 ){
+           if( s === 5 ){
                cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
            }
        } else {
-           if ( (s > 2) && (s < 6) ) {
+           if ( (s > 2) && (s < 6) ){
                cells[ o ].nextState = 1;
            } else {
                cells[ o ].nextState = 0;
@@ -572,14 +572,14 @@ let rules = {
    r11: function ( s, o ){
 
       if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
-          if( cells[o].currentState === 1 ) {
+          if( cells[o].currentState === 1 ){
               if ( ( s === 2 ) || ( s === 3 ) || ( s === 5 ) || ( s === 6 ) || ( s === 7 ) || ( keyCode === BACKSPACE )){
                   cells[o].nextState = 1;
               } else {
                   cells[ o ].nextState = 0;
               }
           } else {
-              if ( ( s === 3 ) || ( s === 7 ) || ( s === 8 ) ) {
+              if ( ( s === 3 ) || ( s === 7 ) || ( s === 8 ) ){
                   cells[ o ].nextState = 1;
               } else {
                   cells[ o ].nextState = 0;
@@ -590,15 +590,15 @@ let rules = {
 
    r35: function ( s, o ) {
 
-     if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 80)){
-         if( cells[ o ].currentState === 1 ) {
+     if ( (cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 80) ){
+         if( cells[ o ].currentState === 1 ){
              if( ( s > 1 ) && ( s < 6 ) && keyCode === BACKSPACE) {
                 cells[ o ].nextState = 1;
              } else {
                 cells[ o ].nextState = 0;
                }
          } else {
-             if ( (s >= 1) && ( s < 8 ) ) {
+             if ( (s >= 1) && ( s < 8 ) ){
                  cells[ o ].nextState = 1;
              } else {
                  cells[ o ].nextState = 0;
@@ -607,15 +607,15 @@ let rules = {
        }
    },
 
-   r12: function( s, o ) {
-       if ( cells[ o ].currentState === 1 ) {
-           if( ( s === 1 ) || ( s === 2 ) || ( s === 5 ) ) {
+   r12: function( s, o ){
+       if ( cells[ o ].currentState === 1 ){
+           if( ( s === 1 ) || ( s === 2 ) || ( s === 5 ) ){
                cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
            }
        } else {
-           if ( ( s === 3 ) || ( s === 6) ) {
+           if ( ( s === 3 ) || ( s === 6) ){
                cells[ o ].nextState = 1;
            } else {
                cells[ o ].nextState = 0;
@@ -626,14 +626,14 @@ let rules = {
 
    //old rule for fear was r9
    r13: function ( s, o ) {
-     if( cells[ o ].currentState === 1 ) {
-         if( ( s > 4 ) && ( s < 9 ) )  {
+     if( cells[ o ].currentState === 1 ){
+         if( ( s > 4 ) && ( s < 9 ) ){
             cells[ o ].nextState = 1;
          } else {
             cells[ o ].nextState = 0;
            }
      } else {
-         if ( ( s === 3 ) ) {
+         if ( ( s === 3 ) ){
              cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
@@ -641,8 +641,8 @@ let rules = {
        }
    },
 
-   r222: function( s, o ) {
-     if( cells[ o ].value > 254 ) {
+   r222: function( s, o ){
+     if( cells[ o ].value > 254 ){
        cells[ o ].nextState = 0;
      } else {
        cells[ o ].nextState = 1;
@@ -653,7 +653,7 @@ let rules = {
    r110: function ( s, o ){
 
           // if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
-              if( cells[o].currentState === 1 ) {
+              if( cells[o].currentState === 1 ){
                   if ( ( s > 2 ) && ( s < 4 ) && ( keyCode === BACKSPACE ) ){
                       cells[o].nextState = 1;
                   } else {
@@ -672,7 +672,7 @@ let rules = {
 
     r12345: function ( s, o ){
 
-       if( cells[o].currentState === 1 ) {
+       if( cells[o].currentState === 1 ){
            if ( ( s > 0 ) && ( s < 6 ) ){
                cells[o].nextState = 1;
            } else {
@@ -688,15 +688,15 @@ let rules = {
 
    },
 
-   r45: function ( s, o ) {
-     if( cells[ o ].currentState === 1 ) {
-         if( ( s == 4 ) || ( s == 5 ) || ( s == 6 ) || ( s == 7 ) )  {
+   r45: function ( s, o ){
+     if( cells[ o ].currentState === 1 ){
+         if( ( s == 4 ) || ( s == 5 ) || ( s == 6 ) || ( s == 7 ) ){
             cells[ o ].nextState = 1;
          } else {
             cells[ o ].nextState = 0;
            }
      } else {
-         if ( ( s == 3 ) || ( s == 4) || ( s == 5 ) ) {
+         if ( ( s == 3 ) || ( s == 4) || ( s == 5 ) ){
              cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
@@ -705,14 +705,14 @@ let rules = {
    },
 
    r46: function ( s, o ) {
-     if( cells[ o ].currentState === 1 ) {
-         if( ( s == 4) || ( s == 5 ) || ( s == 6 ) || ( s == 7 ) || ( s == 8 ))  {
+     if( cells[ o ].currentState === 1 ){
+         if( ( s == 4) || ( s == 5 ) || ( s == 6 ) || ( s == 7 ) || ( s == 8 )){
             cells[ o ].nextState = 1;
          } else {
             cells[ o ].nextState = 0;
            }
      } else {
-         if ( ( s == 3 ) ) {
+         if ( ( s == 3 ) ){
              cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
