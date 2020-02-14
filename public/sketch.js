@@ -14,14 +14,14 @@ let counter2 = 0;
 var socket;
 
 
-function preload() {
+function preload(){
 
     img = loadImage( 'media/therapist3.jpg' );
 
 }
 
 
-function setup() {
+function setup(){
 
     let width = 640;
     let height = 480;
@@ -33,12 +33,12 @@ function setup() {
         toneGlitch(json);
     });
 
-    capture = createCapture( VIDEO );
+    capture = createCapture(VIDEO);
     capture.hide();
 
-    capturePix = createImage( width, height );
-    buffer = createImage( width, height );
-    buffer2 = createImage( width, height );
+    capturePix = createImage(width, height);
+    buffer = createImage(width, height);
+    buffer2 = createImage(width, height);
     // button = createButton('pay me');
 
     setTimeout(function(){
@@ -49,7 +49,7 @@ function setup() {
 }
 
 
-// var tones = {
+//handle api responses and set CA effects.
 
 function toneGlitch(json){
 
@@ -59,19 +59,21 @@ function toneGlitch(json){
 
       console.log(tones)
 
-      let highestTone= {
+      let highestTone = {
           toneId:'empty',
           tone_name:'empty',
           score:0
       }
 
+      // pick the highest scoring tone
       for (var i = 0; i < tones.length; i++){
           if( tones[i].score > highestTone.score){
               highestTone = tones[i]
-                      // console.log(tones.length)
+
           }
       }
 
+      //check for tone and set CA rules and text responses.
       if (tones.length >= 3){
 
         // if( Math.random() > 0.5 ) {
@@ -82,9 +84,9 @@ function toneGlitch(json){
           window.alert("hmm interesting I picked up a few emotions, you seem to have a lot going on... i dunno if i have a glitch to mirror your emotional depth.");
           currentRule = 45;
 
-      } else if (highestTone.tone_id == "anger") {
+      } else if (highestTone.tone_id == "anger"){
 
-          if( Math.random() > 0.5 ) {
+          if(Math.random() > 0.5){
               window.alert("you need to check your temper at the door, I don't treat infants...");
           } else {
               window.alert("anger does nothing for your appearance");
@@ -94,7 +96,7 @@ function toneGlitch(json){
 
       } else if (highestTone.tone_id == "fear"){
 
-          if( Math.random() > 0.5 ) {
+          if(Math.random() > 0.5){
               window.alert("excessive worry WILL cause wrinkles. Im worried about the impact that may have on your love life.");
           } else {
               window.alert("fear will cripple your personal growth 💅");
@@ -104,7 +106,7 @@ function toneGlitch(json){
 
       } else if (highestTone.tone_id == "joy"){
 
-          if( Math.random() > 0.5 ) {
+          if(Math.random() > 0.5){
               window.alert('you seem to be feeling good, I hate to burst your bubble, but insurance will not be covering our session today.');
           } else {
               window.alert('happiness will do wonders for your self-image 💁‍');
@@ -114,7 +116,7 @@ function toneGlitch(json){
 
       } else if (highestTone.tone_id == "analytical"){
 
-          if( Math.random() > 0.5 ) {
+          if(Math.random() > 0.5){
               window.alert("ur so analytical ur like a puzzle");
               currentRule = 12345;
           } else {
@@ -124,7 +126,7 @@ function toneGlitch(json){
 
       } else if (highestTone.tone_id == "confident"){
 
-          if( Math.random() > 0.5 ) {
+          if(Math.random() > 0.5){
               window.alert("omg you sound so confident, that will definitely improve your look!");
           } else {
               window.alert("wow you seem so sure of yourself. Must be nice to always feel right.");
@@ -134,7 +136,7 @@ function toneGlitch(json){
 
       } else if (highestTone.tone_id == "tentative"){
 
-          if( Math.random() > 0.5 ) {
+          if(Math.random() > 0.5){
               window.alert("I sense some hesitation in your tone, does this affect your relationship with others?");
           } else {
               window.alert("wow you sound really unsure of yourself and kinda insecure :/");
@@ -145,7 +147,7 @@ function toneGlitch(json){
       } else if (highestTone.tone_id == "sadness"){
 
 
-          if( Math.random() > 0.5 ) {
+          if(Math.random() > 0.5){
               window.alert("oof you're such a downer, sadness will get you nowhere... honestly, it sucks to be around you when ur like this");
           } else {
               window.alert("you really need to be more positive, others have it much worse than you.");
@@ -157,7 +159,7 @@ function toneGlitch(json){
 
           console.log('no tone');
 
-          if( Math.random() > 0.2 ) {
+          if(Math.random() > 0.2){
               window.alert("i didnt pick up any emotions. you must be emotionally stunted... ");
               currentRule = 12
           } else {
@@ -167,6 +169,7 @@ function toneGlitch(json){
 
       }
 
+      // check to see if all the pixels are dead/beyond the point of recovery
       if ((cCurrent / capturePix.pixels.length) > 254.98){
 
           window.alert("Congrats, either your camera malfunctioned or your extreme mood swings have killed every pixel! Just to be safe, I'm prescribing a mood stabilizer. See you next week!");
@@ -178,15 +181,17 @@ function toneGlitch(json){
           console.log(cCurrent);
       }
 
+      //log tones to console
       let toneID = highestTone.tone_id;
       console.log(toneID);
 
 }
 
 
-function draw() {
+function draw(){
 
-    if ( (keyIsPressed === true && keyCode !== ENTER)&& counter < 1  ) {
+    //create counter for getCameraPixel function
+    if ((keyIsPressed === true && keyCode !== ENTER)&& counter < 1){
 
         counter ++;
 
@@ -201,64 +206,66 @@ function draw() {
 
     }
 
-    // load pixels
-    if ( useCamera ) {
-        if ( keyIsPressed === true) {
 
+    if ( useCamera ){
+        if ( keyIsPressed === true){
+
+            // load pixels
             capturePix.loadPixels();
             buffer2.loadPixels();
             buffer.loadPixels();
 
-            for ( let x = 0; x < capturePix.width; x++ ) {
-                for ( let y = 0; y < capturePix.height; y++ ) {
+            for ( let x = 0; x < capturePix.width; x++ ){
+                for ( let y = 0; y < capturePix.height; y++ ){
 
-                    // current pixel we are on
+                    //create variables for surrounding pixels/wrapping
                     let xMinus = x - 1;
-                    if ( xMinus < 0 ) {
+                    if (xMinus < 0 ){
                         xMinus = capturePix.width - 1;
                     }
                     let xAdd = x + 1;
-                    if ( xAdd > ( capturePix.width - 1 ) ) {
+                    if (xAdd > ( capturePix.width - 1 )){
                         xAdd = 0;
                     }
                     let yMinus = y - 1;
-                    if ( yMinus < 0 ) {
+                    if (yMinus < 0){
                         yMinus = capturePix.height - 1;
                     }
                     let yAdd = y + 1;
-                    if ( yAdd > ( capturePix.height - 1 ) ) {
+                    if (yAdd > (capturePix.height - 1)){
                         yAdd = 0;
                     }
-                    // convert that into 1d array
-                    // x + y * width to get pixels index #
-                    // color data is stored in a 1d pixel array
-                    let topLeft = 4 * ( xMinus + yMinus * capturePix.width );
-                    let topCenter = 4 * ( x + yMinus * capturePix.width );
-                    let topRight = 4 * ( xAdd + yMinus * capturePix.width );
-                    let midLeft = 4 * ( xMinus + y * capturePix.width );
-                    let origin = 4 * ( x + y * capturePix.width );
-                    let midRight = 4 * ( xAdd + y * capturePix.width );
-                    let bottomLeft = 4 * ( xMinus + yAdd * capturePix.width );
-                    let bottomCenter = 4 * ( x + yAdd * capturePix.width );
-                    let bottomRight = 4 * ( xAdd + yAdd * capturePix.width );
-                    let index = 4 * ( x + y * capturePix.width );
 
-                    generate( origin, topLeft, topCenter, topRight,
+                    //create indices for neighboring pixels
+                    let topLeft = 4 * (xMinus + yMinus * capturePix.width);
+                    let topCenter = 4 * (x + yMinus * capturePix.width);
+                    let topRight = 4 * (xAdd + yMinus * capturePix.width);
+                    let midLeft = 4 * (xMinus + y * capturePix.width);
+                    let origin = 4 * (x + y * capturePix.width);
+                    let midRight = 4 * (xAdd + y * capturePix.width);
+                    let bottomLeft = 4 * (xMinus + yAdd * capturePix.width);
+                    let bottomCenter = 4 * (x + yAdd * capturePix.width);
+                    let bottomRight = 4 * (xAdd + yAdd * capturePix.width);
+                    let index = 4 * (x + y * capturePix.width);
+
+                    generate(origin, topLeft, topCenter, topRight,
                       midLeft, midRight, bottomLeft, bottomCenter, bottomRight
                     );
-                    generate( origin + 1, topLeft + 1, topCenter + 1, topRight + 1,
+                    generate(origin + 1, topLeft + 1, topCenter + 1, topRight + 1,
                       midLeft + 1, midRight + 1, bottomLeft + 1, bottomCenter + 1, bottomRight + 1
                     );
-                    generate( origin + 2, topLeft + 2, topCenter + 2, topRight + 2,
+                    generate(origin + 2, topLeft + 2, topCenter + 2, topRight + 2,
                       midLeft + 2, midRight + 2, bottomLeft + 2, bottomCenter + 2, bottomRight + 2
                     );
 
                 }
             }
 
+            //variables for thresholding
             cCurrent = 0;
             avgPixel = 0;
-            for ( let i = 0; i < capturePix.pixels.length; i++) {
+
+            for (let i = 0; i < capturePix.pixels.length; i++){
                 cCurrent += capturePix.pixels[i];
                 avgPixel += buffer2.pixels[i];
             }
@@ -266,11 +273,12 @@ function draw() {
             // console.log("average pixel", avgPixel / capturePix.pixels.length);
             // console.log("cCurrent", cCurrent / capturePix.pixels.length);
 
-            for ( let i = 0; i < capturePix.pixels.length; i++ ) {
+            //set current cell state to next state
+            for (let i = 0; i < capturePix.pixels.length; i++){
 
                 cells[ i ].currentState = cells[ i ].nextState;
 
-                if ( cells[ i ].currentState === 1 ) {
+                if (cells[ i ].currentState === 1){
                     capturePix.pixels[ i ] = cells[ i ].value;
                 } else {
                     capturePix.pixels[ i ] = 255;
@@ -278,31 +286,30 @@ function draw() {
 
             }
 
+            //update pixels
             capturePix.updatePixels();
             buffer2.updatePixels();
             image(capturePix, 0, 0)
 
         }
 
+    // if camera is not on load therapy shutterstock image
     } else {
 
         img.loadPixels();
         buffer.loadPixels();
 
         for ( let x = 0; x < img.width; x++ ) {
-
             for ( let y = 0; y < img.height; y++ ) {
 
                 // get the current pixel we are on
                 let currentPixel = 4 * ( x + y * img.width );
 
-                // grab a pixel in relation to the current pixel we are on
-                // pixel to the left
+                // create variables for surrounding pixels/wrapping.
+                //to the left
                 let xMinus = x - 1;
                 if ( xMinus < 0 ) {
-
                     xMinus = img.width - 1;
-
                 }
 
                 // row above
@@ -321,11 +328,12 @@ function draw() {
 
                 }
 
+                //incides for shifting rgb color channels across x and y axis.
                 let toLeft = 4 * ( xMinus + y * img.width );
                 let rowAbove = 4 * ( x + yMinus * img.width );
                 let rowBelow = 4 * ( x + yPlus * img.width );
 
-                // set the buffers currentPixel color channel, using other pixel locations from the image
+                // set the buffers to shifted color channels
                 buffer.pixels[ currentPixel + 0 ] = img.pixels[ rowAbove + 0 ];
                 buffer.pixels[ currentPixel + 1 ] = img.pixels[ toLeft + 1 ];
                 buffer.pixels[ currentPixel + 2 ] = img.pixels[ rowBelow + 2 ];
@@ -350,9 +358,10 @@ function draw() {
 }
 
 
-function getCameraPixels() {
+function getCameraPixels(){
 
-    capturePix = capture.get( 0, 0, capture.width, capture.height );
+    // get still from webcam and resize it.
+    capturePix = capture.get(0, 0, capture.width, capture.height);
     capturePix.resize(capture.width/1.2,capture.height/1.2);
     buffer2 = capture.get(0, 0, capture.width, capture.height);
     buffer2.resize(capture.width/1.2,capture.height/1.2);
@@ -360,11 +369,13 @@ function getCameraPixels() {
     capturePix.loadPixels();
     buffer2.loadPixels();
 
+
     for ( let i = 0; i < capturePix.pixels.length; i += 4 ) {
         for ( let channel = 0; channel < 3; channel++ ) {
           //console.log(cells[1])
             let cell = Object.create( Cell );
-            //ask about notation here
+
+            //conditions for whether a cell is on or off.
             cell.currentState = (
                 capturePix.pixels[ i + channel ] >= 127
                 ? 1
@@ -375,11 +386,11 @@ function getCameraPixels() {
             cells.push( cell );
         }
 
-      let alphaCell = Object.create( Cell );
-      alphaCell.currentState = 1;
-      alphaCell.nextState = 1;
-      alphaCell.value = 255;
-      cells.push( alphaCell );
+        let alphaCell = Object.create( Cell );
+        alphaCell.currentState = 1;
+        alphaCell.nextState = 1;
+        alphaCell.value = 255;
+        cells.push(alphaCell);
     }
 
     console.log("took capture")
@@ -452,7 +463,7 @@ let Cell = {
     value: 0
 }
 
-
+//define CA rules for each tone.
 let rules = {
 
     r0: function( s, o ) {
