@@ -16,7 +16,7 @@ var socket;
 
 function preload(){
 
-    img = loadImage( 'media/therapist3.jpg' );
+    img = loadImage('media/therapist3.jpg');
 
 }
 
@@ -207,8 +207,8 @@ function draw(){
     }
 
 
-    if ( useCamera ){
-        if ( keyIsPressed === true){
+    if (useCamera){
+        if (keyIsPressed === true){
 
             // load pixels
             capturePix.loadPixels();
@@ -299,39 +299,35 @@ function draw(){
         img.loadPixels();
         buffer.loadPixels();
 
-        for ( let x = 0; x < img.width; x++ ) {
-            for ( let y = 0; y < img.height; y++ ) {
+        for (let x = 0; x < img.width; x++) {
+            for (let y = 0; y < img.height; y++){
 
                 // get the current pixel we are on
-                let currentPixel = 4 * ( x + y * img.width );
+                let currentPixel = 4 * (x + y * img.width);
 
                 // create variables for surrounding pixels/wrapping.
                 //to the left
                 let xMinus = x - 1;
-                if ( xMinus < 0 ) {
+                if (xMinus < 0){
                     xMinus = img.width - 1;
                 }
 
                 // row above
                 let yMinus = y - 1;
-                if ( yMinus < 0 ) {
-
+                if (yMinus < 0){
                     yMinus = img.height -1;
-
                 }
 
                 // row below
                 let yPlus = y + 1;
-                if ( yPlus > img.height - 1 ) {
-
+                if (yPlus > img.height - 1){
                     yPlus = 0;
-
                 }
 
                 //incides for shifting rgb color channels across x and y axis.
-                let toLeft = 4 * ( xMinus + y * img.width );
-                let rowAbove = 4 * ( x + yMinus * img.width );
-                let rowBelow = 4 * ( x + yPlus * img.width );
+                let toLeft = 4 * (xMinus + y * img.width);
+                let rowAbove = 4 * (x + yMinus * img.width);
+                let rowBelow = 4 * (x + yPlus * img.width);
 
                 // set the buffers to shifted color channels
                 buffer.pixels[ currentPixel + 0 ] = img.pixels[ rowAbove + 0 ];
@@ -343,9 +339,9 @@ function draw(){
         }
 
         // now iterate through the buffer and set the images pixels from the buffer
-        for ( let i = 0; i < img.pixels.length; i++ ) {
+        for (let i = 0; i < img.pixels.length; i++){
 
-            img.pixels[i] = buffer.pixels[i];
+            img.pixels[ i ] = buffer.pixels[ i ];
 
         }
 
@@ -370,8 +366,8 @@ function getCameraPixels(){
     buffer2.loadPixels();
 
 
-    for ( let i = 0; i < capturePix.pixels.length; i += 4 ) {
-        for ( let channel = 0; channel < 3; channel++ ) {
+    for (let i = 0; i < capturePix.pixels.length; i += 4){
+        for (let channel = 0; channel < 3; channel++){
           //console.log(cells[1])
             let cell = Object.create( Cell );
 
@@ -383,10 +379,10 @@ function getCameraPixels(){
             );
             cell.value = capturePix.pixels[ i + channel ];
             //console.log(console.log(cells[1]))
-            cells.push( cell );
+            cells.push(cell);
         }
 
-        let alphaCell = Object.create( Cell );
+        let alphaCell = Object.create(Cell);
         alphaCell.currentState = 1;
         alphaCell.nextState = 1;
         alphaCell.value = 255;
@@ -402,7 +398,7 @@ function getCameraPixels(){
 
 
 
-function generate( o, tl, tc, tr, ml, mr, bl, bc, br  ) {
+function generate(o, tl, tc, tr, ml, mr, bl, bc, br){
 
     // add up the states of the neighboring cells
     // console.log( "cells " + c.index + " neighbors: " + c.neighbors );
@@ -420,37 +416,37 @@ function generate( o, tl, tc, tr, ml, mr, bl, bc, br  ) {
     // console.log( "***" + "cell " + c.index + " score:: " + score );
     // check the score with the rules
     // pick rule from currentRule
-    let cr = 'r' + String( currentRule );
-    if ( currentRule === 0 ) {
-        rules.r0( score, o );
-    } else if ( currentRule === 1 ) {
-        rules.r1( score, o );
-    } else if ( currentRule === 4 ) {
-        rules.r4( score, o );
-    } else if ( currentRule === 6) {
-        rules.r6( score, o);
-    } else if ( currentRule === 7 ) {
-        rules.r7( score, o);
-    } else if ( currentRule === 9 ) {
-        rules.r9( score, o );
-    } else if ( currentRule === 11 ) {
-        rules.r11( score, o );
-    } else if ( currentRule === 35 ) {
-        rules.r35( score, o );
-    } else if ( currentRule === 12 ) {
-        rules.r12( score, o );
-    } else if ( currentRule === 13 ) {
-        rules.r13( score, o );
-    } else if ( currentRule === 110 ) {
-        rules.r110( score, o );
-    } else if ( currentRule === 222 ) {
-        rules.r222( score, o );
-    } else if ( currentRule === 12345 ){
-        rules.r12345( score, o );
-    } else if ( currentRule === 45 ){
-        rules.r45( score, o );
-    } else if ( currentRule === 46 ){
-        rules.r46( score, o )
+    let cr = 'r' + String(currentRule);
+    if (currentRule === 0){
+        rules.r0(score, o);
+    } else if (currentRule === 1){
+        rules.r1(score, o);
+    } else if (currentRule === 4){
+        rules.r4(score, o);
+    } else if (currentRule === 6){
+        rules.r6(score, o);
+    } else if (currentRule === 7){
+        rules.r7(score, o);
+    } else if (currentRule === 9){
+        rules.r9(score, o);
+    } else if (currentRule === 11){
+        rules.r11(score, o);
+    } else if (currentRule === 35){
+        rules.r35(score, o);
+    } else if (currentRule === 12){
+        rules.r12(score, o);
+    } else if (currentRule === 13){
+        rules.r13(score, o);
+    } else if (currentRule === 110){
+        rules.r110(score, o);
+    } else if (currentRule === 222){
+        rules.r222(score, o);
+    } else if (currentRule === 12345){
+        rules.r12345(score, o);
+    } else if (currentRule === 45){
+        rules.r45(score, o);
+    } else if (currentRule === 46){
+        rules.r46(score, o)
     }
 
 
@@ -466,16 +462,16 @@ let Cell = {
 //define CA rules for each tone.
 let rules = {
 
-    r0: function( s, o ) {
+    r0: function(s, o){
 
-        if ( cells[ o ].currentState === 1 ) {
-            if ( ( s === 2 ) || ( s === 3 ) ) {
+        if (cells[ o ].currentState === 1){
+            if (( s === 2 ) || ( s === 3 )){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
             }
         } else {
-            if ( s === 3 || s === 6) {
+            if (s === 3 || s === 6){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState =  0;
@@ -483,17 +479,17 @@ let rules = {
         }
     },
 
-    r1: function( s, o ){
+    r1: function(s, o){
 
         if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
-            if ( cells[ o ].currentState === 1 ) {
-                if ( s === 2 || s === 3 || ((s >= 4) && (s < 9 )) ){
+            if (cells[ o ].currentState === 1){
+                if ( (s === 2 || s === 3) || ((s >= 4) && (s < 9 )) ){
                     cells[ o ].nextState = 1;
                 } else {
                     cells[ o ].nextState = 0;
                 }
             } else {
-                if ( (s === 3 || s >= 6 ) ){
+                if ((s === 3 || s >= 6 )){
                     cells[ o ].nextState = 1;
                 } else {
                     cells[ o ].nextState = 0;
@@ -503,15 +499,15 @@ let rules = {
 
     },
 
-    r4: function ( s, o ) {
-        if ( cells[ o ].currentState === 1 ){
-            if ( ( s === 1 ) ) {
+    r4: function(s, o){
+        if (cells[ o ].currentState === 1){
+            if ( s === 1 ){
                 cells[o].nextState = 1;
             } else {
                 cells[ o ].nextState = 0
               }
         } else {
-            if ( s === 1 ){
+            if (s === 1){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
@@ -519,16 +515,16 @@ let rules = {
         }
     },
 
-    r6: function ( s, o ){
+    r6: function(s, o ){
         if( cells[o].currentState === 1 ) {
             // was s < 2
-            if ( s < 2 ){
+            if (s < 2){
                 cells[o].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
             }
         } else {
-            if ( ( s > 0 ) && ( s < 7 )  ){
+            if ((s > 0) && (s < 7)){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
@@ -537,15 +533,15 @@ let rules = {
 
     },
 
-    r7: function ( s, o ){
-        if ( cells[ o ].currentState === 1 ){
-            if ( ( s >= 2 ) && ( s <= 5 ) ){
+    r7: function (s, o){
+        if (cells[ o ].currentState === 1){
+            if ((s >= 2) && (s <= 5)){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
             }
         } else {
-            if ( ( s >= 4 ) && ( s <= 7 ) ){
+            if ((s >= 4) && (s <= 7 )){
                 cells[ o ].nextState = 1;
             } else {
                 cells[ o ].nextState = 0;
@@ -553,15 +549,15 @@ let rules = {
         }
     },
 
-    r9: function( s, o ){
-       if ( cells[ o ].currentState === 1 ){
-           if( s === 5 ){
+    r9: function(s, o){
+       if (cells[ o ].currentState === 1){
+           if(s === 5){
                cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
            }
        } else {
-           if ( (s > 2) && (s < 6) ){
+           if ((s > 2) && (s < 6)){
                cells[ o ].nextState = 1;
            } else {
                cells[ o ].nextState = 0;
@@ -569,17 +565,17 @@ let rules = {
        }
    },
 
-   r11: function ( s, o ){
+   r11: function(s, o){
 
       if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
-          if( cells[o].currentState === 1 ){
-              if ( ( s === 2 ) || ( s === 3 ) || ( s === 5 ) || ( s === 6 ) || ( s === 7 ) || ( keyCode === BACKSPACE )){
+          if(cells[o].currentState === 1){
+              if ((s === 2) || (s === 3) || (s === 5) || (s === 6) || (s === 7) || (keyCode === BACKSPACE)){
                   cells[o].nextState = 1;
               } else {
                   cells[ o ].nextState = 0;
               }
           } else {
-              if ( ( s === 3 ) || ( s === 7 ) || ( s === 8 ) ){
+              if ((s === 3) || (s === 7) || (s === 8)){
                   cells[ o ].nextState = 1;
               } else {
                   cells[ o ].nextState = 0;
@@ -588,17 +584,17 @@ let rules = {
       }
   },
 
-   r35: function ( s, o ) {
+   r35: function(s, o){
 
-     if ( (cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 80) ){
-         if( cells[ o ].currentState === 1 ){
-             if( ( s > 1 ) && ( s < 6 ) && keyCode === BACKSPACE) {
+     if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 80)){
+         if(cells[ o ].currentState === 1){
+             if(( s > 1 ) && ( s < 6 ) && keyCode === BACKSPACE){
                 cells[ o ].nextState = 1;
              } else {
                 cells[ o ].nextState = 0;
                }
          } else {
-             if ( (s >= 1) && ( s < 8 ) ){
+             if ((s >= 1) && (s < 8)){
                  cells[ o ].nextState = 1;
              } else {
                  cells[ o ].nextState = 0;
@@ -607,15 +603,15 @@ let rules = {
        }
    },
 
-   r12: function( s, o ){
-       if ( cells[ o ].currentState === 1 ){
-           if( ( s === 1 ) || ( s === 2 ) || ( s === 5 ) ){
+   r12: function(s, o){
+       if (cells[ o ].currentState === 1){
+           if((s === 1) || (s === 2) || (s === 5)){
                cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
            }
        } else {
-           if ( ( s === 3 ) || ( s === 6) ){
+           if ((s === 3) || (s === 6)){
                cells[ o ].nextState = 1;
            } else {
                cells[ o ].nextState = 0;
@@ -625,15 +621,15 @@ let rules = {
    },
 
    //old rule for fear was r9
-   r13: function ( s, o ) {
-     if( cells[ o ].currentState === 1 ){
-         if( ( s > 4 ) && ( s < 9 ) ){
+   r13: function(s, o){
+     if(cells[ o ].currentState === 1){
+         if(( s > 4 ) && ( s < 9 )){
             cells[ o ].nextState = 1;
          } else {
             cells[ o ].nextState = 0;
            }
      } else {
-         if ( ( s === 3 ) ){
+         if (s === 3){
              cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
@@ -641,7 +637,7 @@ let rules = {
        }
    },
 
-   r222: function( s, o ){
+   r222: function(s, o){
      if( cells[ o ].value > 254 ){
        cells[ o ].nextState = 0;
      } else {
@@ -650,17 +646,17 @@ let rules = {
 
    },
 
-   r110: function ( s, o ){
+   r110: function(s, o){
 
           // if ((cCurrent / capturePix.pixels.length) > (avgPixel/capturePix.pixels.length + 15)){
-              if( cells[o].currentState === 1 ){
-                  if ( ( s > 2 ) && ( s < 4 ) && ( keyCode === BACKSPACE ) ){
+              if(cells[o].currentState === 1){
+                  if ((s > 2) && (s < 4) && (keyCode === BACKSPACE)){
                       cells[o].nextState = 1;
                   } else {
                       cells[ o ].nextState = 0;
                   }
               } else {
-                  if ( ( s > 0 ) && ( s < 8 )  ){
+                  if ((s > 0) && (s < 8)){
                       cells[ o ].nextState = 1;
                   } else {
                       cells[ o ].nextState = 0;
@@ -670,16 +666,16 @@ let rules = {
 
     },
 
-    r12345: function ( s, o ){
+    r12345: function(s, o){
 
-       if( cells[o].currentState === 1 ){
-           if ( ( s > 0 ) && ( s < 6 ) ){
+       if(cells[o].currentState === 1){
+           if ((s > 0) && (s < 6)){
                cells[o].nextState = 1;
            } else {
                cells[ o ].nextState = 0;
            }
        } else {
-           if ( s == 3 ){
+           if (s == 3){
                cells[ o ].nextState = 1;
            } else {
                cells[ o ].nextState = 0;
@@ -688,15 +684,15 @@ let rules = {
 
    },
 
-   r45: function ( s, o ){
-     if( cells[ o ].currentState === 1 ){
-         if( ( s == 4 ) || ( s == 5 ) || ( s == 6 ) || ( s == 7 ) ){
+   r45: function(s, o){
+     if(cells[ o ].currentState === 1){
+         if((s == 4) || (s == 5) || (s == 6) || (s == 7)){
             cells[ o ].nextState = 1;
          } else {
             cells[ o ].nextState = 0;
            }
      } else {
-         if ( ( s == 3 ) || ( s == 4) || ( s == 5 ) ){
+         if ((s == 3) || (s == 4) || (s == 5)){
              cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
@@ -704,15 +700,15 @@ let rules = {
        }
    },
 
-   r46: function ( s, o ) {
-     if( cells[ o ].currentState === 1 ){
-         if( ( s == 4) || ( s == 5 ) || ( s == 6 ) || ( s == 7 ) || ( s == 8 )){
+   r46: function (s, o){
+     if(cells[ o ].currentState === 1){
+         if((s == 4) || (s == 5) || (s == 6) || (s == 7) || (s == 8)){
             cells[ o ].nextState = 1;
          } else {
             cells[ o ].nextState = 0;
            }
      } else {
-         if ( ( s == 3 ) ){
+         if (s == 3){
              cells[ o ].nextState = 1;
          } else {
              cells[ o ].nextState = 0;
