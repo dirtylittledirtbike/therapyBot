@@ -37,14 +37,14 @@ io.sockets.on('connection', function (socket){
 
       socket.on('disconnect', function(){
 
-          console.log('user disconnected');
+          console.log('user disconnected', socket.id);
 
           for (var i = 0; i < clients.length; i++){
               if (clients[i] == socket.id){
                   clients.splice(i, 2);
               }
            }
-           if (clients.length >= 20){
+           if ( clients.length >= 20 ){
                clients = [];
            }
 

@@ -25,9 +25,9 @@ function setup() {
 
     let width = 640;
     let height = 480;
-    createCanvas( width, height) ;
+    createCanvas( width, height);
 
-    socket = io.connect('https://friedchickendogs.com');
+    socket = io.connect('http://localhost:5000');
 
     socket.on('apiRes', function(json){
         toneGlitch(json);
@@ -44,6 +44,7 @@ function setup() {
     setTimeout(function(){
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
                 }, 1000);
+
 
 }
 
@@ -145,15 +146,12 @@ function toneGlitch(json){
 
 
           if( Math.random() > 0.5 ) {
-
               window.alert("oof you're such a downer, sadness will get you nowhere... honestly, it sucks to be around you when ur like this");
-              currentRule = 7;
-
           } else {
               window.alert("you really need to be more positive, others have it much worse than you.");
-              currentRule = 9;
-
           }
+
+          currentRule = 7;
 
       } else {
 
@@ -170,8 +168,13 @@ function toneGlitch(json){
       }
 
       if ((cCurrent / capturePix.pixels.length) > 254.98){
-          window.alert("Congrats, your extreme mood swings have killed every pixel! I'm prescribing a mood stabilizer, see you next week!");
-          location.reload();
+
+          window.alert("Congrats, either your camera malfunctioned or your extreme mood swings have killed every pixel! Just to be safe, I'm prescribing a mood stabilizer. See you next week!");
+
+          setTimeout(function(){
+                          location.reload();
+                      }, 700);
+
           console.log(cCurrent);
       }
 
