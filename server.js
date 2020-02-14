@@ -18,7 +18,7 @@ var toneAnalyzer = new ToneAnalyzerV3({
 app.use(express.static('public'));
 console.log("listening...");
 
-io.sockets.on('connection', function (socket){
+io.sockets.on('connection', function(socket){
 
       // push connections/socket.ids into clients array.
       clients.push(socket.id);
