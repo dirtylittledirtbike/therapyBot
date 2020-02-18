@@ -118,21 +118,21 @@ function toneGlitch(json){
 
           if(Math.random() > 0.5){
               window.alert("ur so analytical ur like a puzzle");
+              currentRule = 6;
           } else {
               window.alert("Your word choice seems to suggest that others perceiving you as intelligent is important to you");
+              currentRule = 11;
           }
-
-          currentRule = 6;
 
       } else if (highestTone.tone_id == "confident"){
 
           if(Math.random() > 0.5){
               window.alert("omg you sound so confident, that will definitely improve your look!");
-              currentRule = 12345;
           } else {
               window.alert("wow you seem so sure of yourself. Must be nice to always feel right.");
-              currentRule = 11;
           }
+
+          currentRule = 12345;
 
       } else if (highestTone.tone_id == "tentative"){
 
