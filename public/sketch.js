@@ -11,7 +11,8 @@ let avgPixel = 0;
 let cCurrent = 0;
 let counter = 0;
 let counter2 = 0;
-var socket;
+let socket = io.connect('http://localhost:5000');
+//var socket;
 
 
 function preload(){
@@ -27,7 +28,18 @@ function setup(){
     let height = 480;
     createCanvas(width, height);
 
-    socket = io.connect('http://localhost:5000');
+    $(function(){
+
+        $('form').submit(function(e){
+            // prevents page reloading
+            e.preventDefault();
+            // console.log(socket.id);
+            socket.emit('apiReq', $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+
+    });
 
     socket.on('apiRes', function(json){
         toneGlitch(json);
@@ -191,7 +203,7 @@ function toneGlitch(json){
 function draw(){
 
     //create counter for getCameraPixel function
-    if ((keyIsPressed === true && keyCode !== ENTER)&& counter < 1){
+    if ((keyIsPressed === true && keyCode !== ENTER) && (counter) < 1){
 
         counter ++;
 
@@ -208,7 +220,8 @@ function draw(){
 
 
     if (useCamera){
-        if (keyIsPressed === true){
+        // if (keyIsPressed === true){
+        // if (keyCode == ENTER){
 
             // load pixels
             capturePix.loadPixels();
@@ -291,7 +304,7 @@ function draw(){
             buffer2.updatePixels();
             image(capturePix, 0, 0)
 
-        }
+         // }
 
     // if camera is not on load therapy shutterstock image
     } else {
