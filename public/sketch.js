@@ -1,4 +1,5 @@
 'use strict'
+
 let capture;
 let img;
 let capturePix;
@@ -10,9 +11,7 @@ let useCamera = false;
 let avgPixel = 0;
 let cCurrent = 0;
 let counter = 0;
-let counter2 = 0;
 let socket = io.connect('http://localhost:5000');
-//var socket;
 
 
 function preload(){
@@ -26,7 +25,6 @@ function setup(){
 
     let width = 640;
     let height = 480;
-    createCanvas(width, height);
 
     $(function(){
 
@@ -41,9 +39,7 @@ function setup(){
 
     });
 
-    socket.on('apiRes', function(json){
-        toneGlitch(json);
-    });
+    createCanvas(width, height);
 
     capture = createCapture(VIDEO);
     capture.hide();
@@ -55,8 +51,10 @@ function setup(){
 
     setTimeout(function(){
                     alert("Ready to begin our therapy session? Press ENTER to continue.");
-                }, 1000);
+                }, 800);
 
+
+    socket.on('apiRes', function(json){toneGlitch(json);});
 
 }
 
@@ -77,7 +75,7 @@ function toneGlitch(json){
           score:0
       }
 
-      // pick the highest scoring tone
+      // pick tone with highest score
       for (var i = 0; i < tones.length; i++){
           if( tones[i].score > highestTone.score){
               highestTone = tones[i]
@@ -157,7 +155,6 @@ function toneGlitch(json){
           currentRule = 46;
 
       } else if (highestTone.tone_id == "sadness"){
-
 
           if(Math.random() > 0.5){
               window.alert("oof you're such a downer, sadness will get you nowhere... honestly, it sucks to be around you when ur like this");
