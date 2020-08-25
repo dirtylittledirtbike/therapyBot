@@ -5,14 +5,16 @@ var app = express();
 var server = app.listen(5000);
 var socket = require('socket.io');
 var io = socket(server);
-
+const config = require('./config.json');
+var myKey = config.API_KEY;
+var apiUrl = config.API_URL;
 
 // api config from ibm website.
 var ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 var toneAnalyzer = new ToneAnalyzerV3({
     version: '2017-09-21',
-    iam_apikey: 'm0uudoJFeK8ozbtxPgvo7AY0N5udjnv4vwC-I7dJM-gm',
-    url: 'https://gateway.watsonplatform.net/tone-analyzer/api'
+    iam_apikey: myKey,
+    url: apiUrl
 });
 
 app.use(express.static('public'));
