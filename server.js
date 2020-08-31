@@ -17,7 +17,7 @@ var toneAnalyzer = new ToneAnalyzerV3({
     url: apiUrl
 });
 
-app.use(express.static('public'));
+app.use(express.static('public', { extensions: ['html'] }));
 console.log("listening...");
 
 io.sockets.on('connection', function(socket){
